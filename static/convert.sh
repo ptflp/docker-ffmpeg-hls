@@ -21,6 +21,8 @@ function batch_convert() {
         fi
     done
 }
-batch_convert $MP4_VIDEO_DIR
-# upload to ftp server
-lftp -u $FTP_USER,$FTP_PASSWORD -e "set ftp:ssl-allow no; mirror -R --only-newer --only-missing --verbose --parallel=$FTP_UPLOAD_PARALLEL $TS_VIDEO_DIR/ $FTP_UPLOAD_DIR;exit;" $FTP_SERVER
+while [ : ]
+do
+    batch_convert $MP4_VIDEO_DIR
+    sleep 13
+done
